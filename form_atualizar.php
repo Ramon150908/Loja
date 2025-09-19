@@ -14,25 +14,38 @@
         <h2>Ramon Alves & Marcos Gabriel</h2>
         <h2>ATUALIZAÇÃO DO PRODUTO</h2>
         <?php
-            $id = $_GET['id'];
-            //echo "Recebi ==> $id"
-        
-            require 'conexao.php';
-            $sql = "SELECT * FROM produtos WHERE id = $id" ;
-            $stmt = $pdo->query($sql);
-            $produto = $stmt->fetch(PDO::FETCH_ASSOC);
-            // print_r($produto);
+          include "cabecalho.php";  // Cabeçalho da página
+          require 'conexao.php';     // Conexão com o banco de dados
+      
 
-            // echo $produto['nome'];
+          if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+              // Pegando os dados do formulário
+              $nome = $_POST['produto'];
+              $preco = $_POST['preco'];
+              $quantidade = $_POST['quantidade'];
+              $id = $_GET['id'];  // Pegando o ID do produto que será atualizado
+      
 
+              $sql = "UPDATE produtos SET nome = :nome, preco = :preco, quantidade = :quantidade WHERE id = :id";
+              $stmt = $pdo->prepare($sql);
+              $stmt->bindParam(':nome', $nome);
+              $stmt->bindParam(':preco', $preco);
+              $stmt->bindParam(':quantidade', $quantidade);
+              $stmt->bindParam(':id', $id);
 
-            // while ($produto = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            //     echo "ID: " . $produto['id'] . "<br>";
-            //     echo "Nome: " . $produto['nome'] . "<br>";
-            //     echo "Preço: R$" . $produto['preco'] . "<br>";
-            //     echo "Estoque: " . $produto['estoque'] . "<br><br>";
-            // }
-
+              if ($stmt->execute()) {
+                  echo "<p>Produto atualizado com sucesso!</p>";
+              } else {
+                  echo "<p>Erro ao atualizar o produto. Tente novamente.</p>";
+              }
+          }
+      
+          $id = $_GET['id'];
+          $sql = "SELECT * FROM produtos WHERE id = :id";
+          $stmt = $pdo->prepare($sql);
+          $stmt->bindParam(':id', $id);
+          $stmt->execute();
+          $produto = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
     </div>
                                                                     
@@ -49,6 +62,8 @@
           </div>
           <button type="submit" class="btn btn-primary">Atualizar</button>
         </form>
+        <hr>
+        <p>Observação: o PHP desta parte do site foi feito com auxílio de I.A</p>
     </div>
     
 </body>
