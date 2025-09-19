@@ -17,4 +17,6 @@
         } else {
         echo "Erro ao inserir produto.";
         }
+    echo "<hr>";    
+    echo "<a href='index.php' type='button' class='btn btn-success'>Voltar</a>"
 ?>

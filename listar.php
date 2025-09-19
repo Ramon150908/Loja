@@ -30,24 +30,21 @@
                 echo "<td>".$produto['nome']."</td>";
                 echo "<td>".$produto['preco']."</td>";
                 echo "<td>".$produto['quantidade']."</td>";
-                echo "<td>
-                    <div class='btn-group' role='group' aria-label='Basic mixed styles example'>
-                        <a href='form_atualizar.php?id=".$produto['id']."' type='button' class='btn btn-success'>Atualizar</a>
-                        
-                        <!-- Botão Apagar convertido em formulário para enviar via POST -->
-                        <form action='delete.php' method='POST' style='display:inline' onsubmit='return confirm(\"Confirma excluir o produto?\");'>
-                            <input type='hidden' name='id' value='".$produto['id']."'>
-                            <button type='submit' class='btn btn-danger'>Apagar</button>
-                        </form>
-                    </div>
-                </td>";
+                echo"
+                    <td>
+                       <div class='btn-group' role='group'>
+                          <a href='form_atualizar.php?id=".$produto['id']."' type='button' class='btn btn-success'>Atualizar</a>
+                          <a href='delete.php?id=".$produto['id']."' type='button' class='btn btn-danger'>Apagar</a>
+                        </div>
+                    </td>
+                    ";
                 echo "</tr>";
             }
         ?>
         </tbody>
     </table>
-    
-</div>
+    <a href="index.php" type="button" class="btn btn-success">Voltar</a>
+    </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>

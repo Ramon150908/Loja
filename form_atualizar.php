@@ -62,8 +62,7 @@
           </div>
           <button type="submit" class="btn btn-primary">Atualizar</button>
         </form>
-        <hr>
-        <p>Observação: o PHP desta parte do site foi feito com auxílio de I.A</p>
+        
     </div>
     
 </body>

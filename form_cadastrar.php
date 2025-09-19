@@ -27,6 +27,7 @@
                 <input type="text" name="quantidade" class="form-control" placeholder="Digite a quantidade">
           </div>
           <button type="submit" class="btn btn-primary">Cadastrar</button>
+          <a href="index.php" type="button" class="btn btn-success">Voltar</a>
         </form>
     </div>
     
